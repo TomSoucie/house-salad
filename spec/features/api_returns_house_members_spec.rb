@@ -14,9 +14,16 @@ describe "API returns members of congress by State" do
   context "when a user searches via the dropdown" do
     it "searches by state" do
       visit "/"
-      within(:css)
-
-
+      select "Colorado", from: :state, :match => :first
+      click_on "Locate Members of the House"
+      expect(current_path).to eq('/search/state=CO')
+      expect(page).to have_content("7 Results")
+      expect(page).to have_selector(".member", count: 7)
+      #expect 'members' to be listed in order seniority
+      expect(page).to have_selector(".member_name")
+      expect(page).to have_selector(".member_role")
+      expect(page).to have_selector(".member_party")
+      expect(page).to have_selector(".member_district")
     end
   end
 end
