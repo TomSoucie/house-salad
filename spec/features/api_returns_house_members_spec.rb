@@ -14,7 +14,7 @@ describe "API returns members of congress by State" do
   context "when a user searches via the dropdown" do
     it "searches by state" do
       visit "/"
-      expect(response).to be_success
+      within(:css)
 
 
     end
